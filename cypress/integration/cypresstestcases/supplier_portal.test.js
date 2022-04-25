@@ -1,16 +1,17 @@
 /// <reference types="cypress"  />
 describe('supplier', ()=> {
-    it('Test one',() =>{
+    beforeEach(() =>{
         cy.viewport('macbook-13')
         cy.visit('https://supplier-uat-miliki.k8s.tracom.co.ke:2020/')
+
+    })
+    it('Test one',() =>{
         cy.contains('Kindly enter username and password to login').should('exist')
         cy.contains('Proceed').should('exist')
         cy.contains('Forgot password').click()
         cy.url().should('include','/forgotPassword')
     })
     it('Should login succesfully',() =>{
-        cy.viewport('macbook-13')
-        cy.visit('https://supplier-uat-miliki.k8s.tracom.co.ke:2020/')
         cy.contains('Email Address or Username').should('exist')
         cy.log('Enter Username')
         cy.get('#normal_login_username').type('supplier@example.com')
@@ -24,8 +25,6 @@ describe('supplier', ()=> {
         
     })
     it('Log out',() =>{
-        cy.viewport('macbook-13')
-        cy.visit('https://supplier-uat-miliki.k8s.tracom.co.ke:2020/')
         cy.contains('Email Address or Username').should('exist')
         cy.get('#normal_login_username').type('supplier@example.com')
         cy.contains('Email Address or Username').should('exist')
@@ -38,8 +37,6 @@ describe('supplier', ()=> {
         
     })
     it('Forgot Password',() =>{
-        cy.viewport('macbook-13')
-        cy.visit('https://supplier-uat-miliki.k8s.tracom.co.ke:2020/')
         cy.log('Forgot Password')
         cy.contains('Forgot password').click()
         cy.url().should('include','/forgotPassword')
